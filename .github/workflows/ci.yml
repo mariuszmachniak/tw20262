@@ -25,10 +25,14 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+    contents: read
+
 jobs:
   changes:
     name: Changed files
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     outputs:
       ui: ${{ steps.filter.outputs.ui }}
       api: ${{ steps.filter.outputs.api }}
@@ -233,3 +237,22 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+
+  pipeline-status:
+    name: Pipeline status
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [changes, quality, unit, security, build, test-api, test-ui, ui-report]
+    if: always()
+    steps:
+      - name: Check results
+        run: |
+          results='${{ join(needs.*.result, ' ') }}'
+          echo "Job results: $results"
+          for result in $results; do
+            case "$result" in
+              success|skipped) ;;
+              *) echo "::error::A job finished with result: $result"; exit 1 ;;
+            esac
+          done
+          echo "All checks passed."
