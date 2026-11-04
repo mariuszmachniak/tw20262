@@ -19,7 +19,7 @@ do sekundy.
 | Post Set up Node | |
 | Post Checkout | |
 | Complete job | |
-| **Cały przebieg** | |
+| **Cały przebieg** | 3m 0s |
 
 ## Czas do pierwszego czerwonego sygnału
 
