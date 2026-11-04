@@ -25,9 +25,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-jobs:
-  permissions:
+permissions:
     contents: read
+
+jobs:
   changes:
     name: Changed files
     runs-on: ubuntu-latest
