@@ -38,7 +38,7 @@ jobs:
         id: pw
         run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
 
-      - Cache Playwright browsers
+      - name: Cache Playwright browsers
         id: pw-cache
         uses: actions/cache@v4
         with:
