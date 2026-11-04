@@ -54,6 +54,13 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+    
 
   test-api:
     name: API tests
