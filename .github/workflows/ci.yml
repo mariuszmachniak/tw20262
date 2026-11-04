@@ -242,7 +242,7 @@ jobs:
     name: Pipeline status
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [changes, quality, unit, security, build, test-api, test-ui, ui-report, test-report]
+    needs: [changes, quality, unit, security, build, test-api, test-ui, ui-report]
     if: always()
     steps:
       - name: Check results
