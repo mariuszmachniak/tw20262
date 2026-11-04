@@ -27,7 +27,7 @@ concurrency:
 
 jobs:
   permissions:
-    contentes: read
+    contents: read
   changes:
     name: Changed files
     runs-on: ubuntu-latest
